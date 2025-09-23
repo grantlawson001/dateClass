@@ -3,6 +3,7 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
+#include <string>
 #include <ctime>
 namespace util {
 
@@ -10,7 +11,7 @@ namespace util {
     public:
         struct Invalid {
             int bad_day;
-            std::string bad_month;
+            int bad_month;
             int bad_year;
 
             Invalid(int day, int month, int year);
@@ -21,7 +22,7 @@ namespace util {
         Date (int day, int month, int year);
 
         void setDay(int day);
-        int getDay ();
+        int getDay () const;
 
         void setMonth(int month);
         std::string getMonth () const;
@@ -31,8 +32,7 @@ namespace util {
 
         void now();
 
-        void advance();
-        void advance(int days);
+        void advance(int days = 1);
 
         enum class Order {
             MonthDayYear,
@@ -42,12 +42,16 @@ namespace util {
 
         void print () const;
 
-        //static Order order;
-        //static char separator;
+        static Order order;
+        static char separator;
+
     private:
         int _day, _month, _year;
 
         static std::string whatMonth (int month);
+
+        static bool isValid(int day = 1, int month = 1, int year = 1970);
+
     };
 
 }
