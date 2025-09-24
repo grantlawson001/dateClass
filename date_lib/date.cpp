@@ -122,7 +122,7 @@ namespace util {
         validDate.tm_mon = month - 1;
         validDate.tm_year = year - 1900;
 
-        if (mktime(&validDate) == -1) return false;
+        mktime(&validDate);
 
         return (validDate.tm_mday == day &&
                 validDate.tm_mon == month - 1 &&
