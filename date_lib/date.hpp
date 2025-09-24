@@ -50,7 +50,7 @@ namespace util {
 
         static std::string whatMonth (int month);
 
-        static bool isValid(int day = 1, int month = 1, int year = 1970);
+        static bool isValid(int day, int month, int year);
 
     };
 

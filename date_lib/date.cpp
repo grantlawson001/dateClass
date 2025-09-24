@@ -23,20 +23,14 @@ namespace util {
         _month = month;
         _year = year;
 
-        if (isValid(_day, _month, _year)) {
-
-        }
-        else {
+        if (!isValid(_day, _month, _year)) {
             throw Invalid(_day, _month, _year);
         }
     }
 
     void Date::setDay(int day) {
         _day = day;
-        if (isValid(_day, _month, _year)) {
-
-        }
-        else {
+        if (!isValid(_day, _month, _year)) {
             throw Invalid(_day, _month, _year);
         }
     }
@@ -46,10 +40,7 @@ namespace util {
 
     void Date::setMonth(int month) {
         _month = month;
-        if (isValid(_day, _month, _year)) {
-
-        }
-        else {
+        if (!isValid(_day, _month, _year)) {
             throw Invalid(_day, _month, _year);
         }
     }
@@ -59,10 +50,7 @@ namespace util {
 
     void Date::setYear(int year) {
         _year = year;
-        if (isValid(_day, _month, _year)) {
-
-        }
-        else {
+        if (!isValid(_day, _month, _year)) {
             throw Invalid(_day, _month, _year);
         }
     }
@@ -127,19 +115,18 @@ namespace util {
     }
 
     bool Date::isValid(int day, int month, int year) {
+        if (year < 1900 || month < 1 || month > 12 || day < 1) return false;
+
         tm validDate = {};
         validDate.tm_mday = day;
         validDate.tm_mon = month - 1;
         validDate.tm_year = year - 1900;
 
-        time_t correct = mktime(&validDate);
+        if (mktime(&validDate) == -1) return false;
 
-        if (validDate.tm_mday != day || validDate.tm_mon != (month - 1) || validDate.tm_year != (year - 1900)) {
-            return false;
-        }
-        else {
-            return true;
-        }
+        return (validDate.tm_mday == day &&
+                validDate.tm_mon == month - 1 &&
+                validDate.tm_year == year - 1900);
     }
 
 
