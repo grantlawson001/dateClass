@@ -19,5 +19,5 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_subdirectory(date_lib)
+add_subdirectory(date)
 add_subdirectory(date_test)
