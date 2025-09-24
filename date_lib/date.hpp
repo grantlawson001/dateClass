@@ -55,4 +55,5 @@ namespace util {
     };
 
 }
+using namespace util;
 #endif // DATE_LIBRARY_H

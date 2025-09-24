@@ -115,7 +115,9 @@ namespace util {
     }
 
     bool Date::isValid(int day, int month, int year) {
-        if (year < 1900 || month < 1 || month > 12 || day < 1) return false;
+        if (year < 1900 || month < 1 || month > 12 || day < 1) {
+            return false;
+        }
 
         tm validDate = {};
         validDate.tm_mday = day;
