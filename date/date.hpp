@@ -21,14 +21,16 @@ namespace util {
 
         Date (int day, int month, int year);
 
-        void setDay(int day);
-        int getDay () const;
+        void day(int day);
+        int day () const;
 
-        void setMonth(int month);
-        std::string getMonth () const;
+        void month(int month);
+        int month () const;
 
-        void setYear(int year);
-        int getYear () const;
+        std::string monthName();
+
+        void year(int year);
+        int year () const;
 
         void now();
 

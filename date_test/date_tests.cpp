@@ -7,16 +7,16 @@
 namespace util {
     TEST(DateTest, DefaultConstructor) {
         Date d;
-        EXPECT_EQ(1, d.getDay());
-        EXPECT_EQ("January", d.getMonth());
-        EXPECT_EQ(1970, d.getYear());
+        EXPECT_EQ(1, d.day());
+        EXPECT_EQ(1, d.month());
+        EXPECT_EQ(1970, d.year());
     }
 
     TEST(DateTest, ValidConstructor) {
         Date d(15, 6, 2023);
-        EXPECT_EQ(15, d.getDay());
-        EXPECT_EQ("June", d.getMonth());
-        EXPECT_EQ(2023, d.getYear());
+        EXPECT_EQ(15, d.day());
+        EXPECT_EQ(6, d.month());
+        EXPECT_EQ(2023, d.year());
     }
 
     TEST(DateTest, InvalidConstructorThrows) {
@@ -25,45 +25,49 @@ namespace util {
 
     TEST(DateTest, SetDayValid) {
         Date d(10, 5, 2023);
-        d.setDay(20);
-        EXPECT_EQ(20, d.getDay());
+        d.day(20);
+        EXPECT_EQ(20, d.day());
     }
 
     TEST(DateTest, SetDayInvalidThrows) {
         Date d(10, 2, 2023);
-        EXPECT_THROW(d.setDay(30), Date::Invalid);
+        EXPECT_THROW(d.day(30), Date::Invalid);
     }
 
     TEST(DateTest, SetMonthInvalidThrows) {
         Date d(10, 2, 2023);
-        EXPECT_THROW(d.setMonth(13), Date::Invalid);
+        EXPECT_THROW(d.month(13), Date::Invalid);
     }
 
     TEST(DateTest, SetMonthValid) {
         Date d(10, 1, 2023);
-        d.setMonth(12);
-        EXPECT_EQ("December", d.getMonth());
+        d.month(12);
+        EXPECT_EQ(12, d.month());
     }
 
     TEST(DateTest, SetYearValid) {
         Date d(10, 1, 2023);
-        d.setYear(2025);
-        EXPECT_EQ(2025, d.getYear());
+        d.year(2025);
+        EXPECT_EQ(2025, d.year());
     }
 
     TEST(DateTest, AdvanceOneDay) {
         Date d(1, 3, 2024);
         d.advance(1);
-        EXPECT_EQ(2, d.getDay());
-        EXPECT_EQ("March", d.getMonth());
-        EXPECT_EQ(2024, d.getYear());
+        EXPECT_EQ(2, d.day());
+        EXPECT_EQ(3, d.month());
+        EXPECT_EQ(2024, d.year());
     }
 
     TEST(DateTest, AdvanceMultipleDays) {
         Date d(28, 2, 2023);
         d.advance(2);
-        EXPECT_EQ(2, d.getDay());
-        EXPECT_EQ("March", d.getMonth());
-        EXPECT_EQ(2023, d.getYear());
+        EXPECT_EQ(2, d.day());
+        EXPECT_EQ(3, d.month());
+        EXPECT_EQ(2023, d.year());
+    }
+    TEST(DateTest, DoesreturnName) {
+        Date d;
+        EXPECT_EQ("January", d.monthName());
     }
 }

@@ -28,33 +28,37 @@ namespace util {
         }
     }
 
-    void Date::setDay(int day) {
+    void Date::day(int day) {
         _day = day;
         if (!isValid(_day, _month, _year)) {
             throw Invalid(_day, _month, _year);
         }
     }
-    int Date::getDay () const{
+    int Date::day () const{
         return _day;
     }
 
-    void Date::setMonth(int month) {
+    void Date::month(int month) {
         _month = month;
         if (!isValid(_day, _month, _year)) {
             throw Invalid(_day, _month, _year);
         }
     }
-    std::string Date::getMonth () const{
+    int Date::month () const{
+        return _month;
+    }
+
+    std::string Date::monthName () {
         return whatMonth(_month);
     }
 
-    void Date::setYear(int year) {
+    void Date::year(int year) {
         _year = year;
         if (!isValid(_day, _month, _year)) {
             throw Invalid(_day, _month, _year);
         }
     }
-    int Date::getYear () const{
+    int Date::year () const{
         return _year;
     }
 
@@ -83,13 +87,13 @@ namespace util {
     }
     void Date::print () const{
         if (order == Order::MonthDayYear) {
-            std::cout << whatMonth(_month) << separator << _day << separator << _year;
+            std::cout << _month << separator << _day << separator << _year;
         }
         else if (order == Order::DayMonthYear) {
-            std::cout << _day << separator << whatMonth(_month) << separator << _year;
+            std::cout << _day << separator << _month << separator << _year;
         }
         else {
-            std::cout <<  _year << separator << whatMonth(_month) << separator << _day;
+            std::cout <<  _year << separator << _month << separator << _day;
         }
     }
 
