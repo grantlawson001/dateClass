@@ -4,7 +4,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
-#include <ctime>
+
 namespace util {
 
     class Date {
@@ -55,5 +55,5 @@ namespace util {
     };
 
 }
-using namespace util;
+
 #endif // DATE_LIBRARY_H
