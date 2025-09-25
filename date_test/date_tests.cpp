@@ -66,7 +66,7 @@ namespace util {
         EXPECT_EQ(3, d.month());
         EXPECT_EQ(2023, d.year());
     }
-    TEST(DateTest, DoesreturnName) {
+    TEST(DateTest, DoesReturnMonthName) {
         Date d;
         EXPECT_EQ("January", d.monthName());
     }

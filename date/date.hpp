@@ -29,10 +29,12 @@ namespace util {
 
         std::string monthName();
 
+        std::string dayName ();
+
         void year(int year);
         int year () const;
 
-        void now();
+        static Date now();
 
         void advance(int days = 1);
 
@@ -42,7 +44,7 @@ namespace util {
             YearMonthDay
         };
 
-        void print () const;
+        void print (std::ostream& os) const;
 
         static Order order;
         static char separator;
@@ -51,6 +53,8 @@ namespace util {
         int _day, _month, _year;
 
         static std::string whatMonth (int month);
+
+        static std::string whatDay (int day, int month, int year);
 
         static bool isValid(int day, int month, int year);
 

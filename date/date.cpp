@@ -52,6 +52,9 @@ namespace util {
         return whatMonth(_month);
     }
 
+    std::string Date::dayName () {
+        return whatDay(_day, _month, _year);
+    }
     void Date::year(int year) {
         _year = year;
         if (!isValid(_day, _month, _year)) {
@@ -62,12 +65,11 @@ namespace util {
         return _year;
     }
 
-    void Date::now() {
+    Date Date::now() {
         time_t t = time(NULL);
         tm currentDay = *localtime(&t);
-        _day = currentDay.tm_mday;
-        _month = currentDay.tm_mon + 1;
-        _year = currentDay.tm_year + 1900;
+
+        return Date(currentDay.tm_mday, currentDay.tm_mon + 1, currentDay.tm_year + 1900);
     }
 
     void Date::advance(int days) {
@@ -85,7 +87,8 @@ namespace util {
         _month = updated.tm_mon + 1;
         _year = updated.tm_year + 1900;
     }
-    void Date::print () const{
+
+    void Date::print (std::ostream& os) const{
         if (order == Order::MonthDayYear) {
             std::cout << _month << separator << _day << separator << _year;
         }
@@ -114,6 +117,26 @@ namespace util {
             case 10: return "October";
             case 11: return "November";
             case 12: return "December";
+            default: return "Invalid";
+        }
+    }
+
+    std::string Date::whatDay(int day, int month, int year) {
+        tm currentDay = {};
+        currentDay.tm_mday = day;
+        currentDay.tm_mon = month - 1;
+        currentDay.tm_year = year - 1900;
+
+        mktime(&currentDay);
+
+        switch (currentDay.tm_wday) {
+            case 0: return "Sunday";
+            case 1: return "Monday";
+            case 2: return "Tuesday";
+            case 3: return "Wednesday";
+            case 4: return "Thursday";
+            case 5: return "Friday";
+            case 6: return "Saturday";
             default: return "Invalid";
         }
     }
