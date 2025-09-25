@@ -48,13 +48,14 @@ namespace util {
         return _month;
     }
 
-    std::string Date::monthName () {
+    std::string Date::monthName () const{
         return whatMonth(_month);
     }
 
-    std::string Date::dayName () {
+    std::string Date::dayName () const{
         return whatDay(_day, _month, _year);
     }
+
     void Date::year(int year) {
         _year = year;
         if (!isValid(_day, _month, _year)) {
@@ -90,13 +91,13 @@ namespace util {
 
     void Date::print (std::ostream& os) const{
         if (order == Order::MonthDayYear) {
-            std::cout << _month << separator << _day << separator << _year;
+            os << _month << separator << _day << separator << _year;
         }
         else if (order == Order::DayMonthYear) {
-            std::cout << _day << separator << _month << separator << _year;
+            os << _day << separator << _month << separator << _year;
         }
         else {
-            std::cout <<  _year << separator << _month << separator << _day;
+            os <<  _year << separator << _month << separator << _day;
         }
     }
 

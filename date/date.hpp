@@ -27,9 +27,9 @@ namespace util {
         void month(int month);
         int month () const;
 
-        std::string monthName();
+        std::string monthName() const;
 
-        std::string dayName ();
+        std::string dayName() const;
 
         void year(int year);
         int year () const;
