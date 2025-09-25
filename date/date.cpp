@@ -19,31 +19,34 @@ namespace util {
     };
 
     Date::Date (int day, int month, int year) {
+        if (!isValid(day, month, year)) {
+            throw Invalid(day, month, year);
+        }
+
         _day = day;
         _month = month;
         _year = year;
-
-        if (!isValid(_day, _month, _year)) {
-            throw Invalid(_day, _month, _year);
-        }
     }
 
     void Date::day(int day) {
-        _day = day;
-        if (!isValid(_day, _month, _year)) {
-            throw Invalid(_day, _month, _year);
+        if (!isValid(day, _month, _year)) {
+            throw Invalid(day, _month, _year);
         }
+
+        _day = day;
     }
     int Date::day () const{
         return _day;
     }
 
     void Date::month(int month) {
-        _month = month;
-        if (!isValid(_day, _month, _year)) {
-            throw Invalid(_day, _month, _year);
+        if (!isValid(_day, month, _year)) {
+            throw Invalid(_day, month, _year);
         }
+
+        _month = month;
     }
+
     int Date::month () const{
         return _month;
     }
@@ -57,10 +60,11 @@ namespace util {
     }
 
     void Date::year(int year) {
-        _year = year;
-        if (!isValid(_day, _month, _year)) {
-            throw Invalid(_day, _month, _year);
+        if (!isValid(_day, _month, year)) {
+            throw Invalid(_day, _month, year);
         }
+
+        _year = year;
     }
     int Date::year () const{
         return _year;
